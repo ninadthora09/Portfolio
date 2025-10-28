@@ -109,7 +109,10 @@ const Hero = () => {
   };
 
   return (
-    <section  id="hero" className="relative w-full h-screen overflow-hidden flex items-center bg-gray-50" >
+    <section
+      id="hero"
+      className="relative w-full h-screen overflow-hidden flex items-center bg-gray-50"
+    >
       <canvas
         ref={canvasRef}
         className="fixed top-0 left-0 w-full h-full z-0 pointer-events-none"
@@ -121,12 +124,13 @@ const Hero = () => {
         <img
           src={RobotImage}
           alt="Robot"
-          className="w-64 h-auto animate-bounce-slow z-10"
+          className="w-100 h-auto animate-bounce-slow z-10"
         />
       </div>
 
       {/* Right - Text */}
-      <div className="relative z-10 flex flex-col justify-center flex-2 px-6 text-left md:text-left"
+      <div
+        className="relative z-10 flex flex-col justify-center flex-2 px-6 text-left md:text-left"
         style={{ fontFamily: "'Goldman', sans-serif" }}
       >
         <Motion.p
@@ -142,11 +146,16 @@ const Hero = () => {
           className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-gray-900 mt-4 leading-tight max-w-4xl"
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, type: "spring", stiffness: 120, damping: 10 }}
+          transition={{
+            duration: 1,
+            type: "spring",
+            stiffness: 120,
+            damping: 10,
+          }}
           style={{ fontFamily: "'Goldman', sans-serif" }}
         >
-          An aspiring <RotatingText phrases={roles} /> passionate about
-          building smart, impactful digital solutions.
+          An aspiring <RotatingText phrases={roles} /> passionate about building
+          smart, impactful digital solutions.
         </Motion.h1>
 
         <Motion.p
@@ -155,7 +164,8 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          Final-Year Computer Engineering Student | Web Development, Data Science & AI Enthusiast
+          Final-Year Computer Engineering Student | Web Development, Data
+          Science & AI Enthusiast
         </Motion.p>
       </div>
 
@@ -171,11 +181,22 @@ const Hero = () => {
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
         />
-        <span className="text-gray-800 font-bold text-lg" style={{ fontFamily: "'Goldman', sans-serif" }}>Scroll Down</span>
+        <span
+          className="text-gray-800 font-bold text-lg"
+          style={{ fontFamily: "'Goldman', sans-serif" }}
+        >
+          Scroll Down
+        </span>
       </Motion.div>
 
       {/* Right buttons */}
       <div className="absolute bottom-20 right-4 md:right-10 flex flex-col space-y-3 md:space-y-4 z-20">
+        <a
+          href="/Updated_resume.pdf"
+          download="Updated_resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
         <Motion.button
           className="bg-gray-900 text-white px-3 py-2 md:px-5 md:py-2 rounded-full font-medium text-sm md:text-base hover:bg-sky-600 transition duration-300 cursor-pointer"
           whileHover={{ scale: 1.05 }}
@@ -184,7 +205,7 @@ const Hero = () => {
         >
           Download Resume
         </Motion.button>
-
+        </a>
         <Motion.button
           onClick={openModal}
           id="contact-btn"
@@ -208,7 +229,7 @@ const Hero = () => {
           <FaGithub size={24} />
         </a>
         <a
-          href="https://www.linkedin.com/in/ninadthora09"
+          href="https://www.linkedin.com/in/ninad-thorat-6b96b4255/"
           target="_blank"
           rel="noopener noreferrer"
           className="text-gray-900 hover:text-sky-500 transition-colors duration-300"
@@ -216,7 +237,7 @@ const Hero = () => {
           <FaLinkedin size={24} />
         </a>
         <a
-          href="https://twitter.com/"
+          href="https://x.com/ninadthorat4"
           target="_blank"
           rel="noopener noreferrer"
           className="text-gray-900 hover:text-sky-500 transition-colors duration-300"
@@ -224,7 +245,7 @@ const Hero = () => {
           <FaTwitter size={24} />
         </a>
         <a
-          href="https://instagram.com/"
+          href="https://www.instagram.com/ninad_thorat_26/?__pwa=1"
           target="_blank"
           rel="noopener noreferrer"
           className="text-gray-900 hover:text-sky-500 transition-colors duration-300"

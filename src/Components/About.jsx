@@ -1,4 +1,6 @@
 import React, { useRef } from "react";
+import Photo from "../assets/Photo.png"
+import { Typewriter } from "react-simple-typewriter";
 import { motion as Motion, useInView } from "framer-motion";
 import {
   Target,
@@ -46,11 +48,11 @@ const SKILLS = [
   { name: "React", icon: Combine },
   { name: "Node.js", icon: Server },
   { name: "MongoDB", icon: Database },
-  { name: "Python", icon: Zap },
-  { name: "CSS / Tailwind", icon: Palette },
+  { name: "Express.js", icon: Zap },
+  { name: "CSS3/ Tailwind", icon: Palette },
   { name: "HTML5", icon: Brackets },
   { name: "Git & GitHub", icon: GitBranch },
-  { name: "Docker", icon: Package },
+  { name: "SQL", icon: Package },
 ];
 
 const About = () => {
@@ -67,22 +69,22 @@ const About = () => {
       {/* --- Blue Animated Background Circles --- */}
       <div className="absolute inset-0 -z-20">
         <Motion.div
-          className="w-96 h-96 rounded-full bg-sky-400/30 blur-[120px] absolute top-10 left-1/4"
+          className="w-96 h-96 rounded-full bg-black-400/30 blur-[120px] absolute top-10 left-1/4"
           animate={{ y: [0, 40, 0], x: [0, 30, 0] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         <Motion.div
-          className="w-72 h-72 rounded-full bg-sky-500/30 blur-[150px] absolute bottom-10 right-1/3"
+          className="w-72 h-72 rounded-full bg-black-/30 blur-[150px] absolute bottom-10 right-1/3"
           animate={{ y: [0, -30, 0], x: [0, -40, 0] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
         <Motion.div
-          className="w-80 h-80 rounded-full bg-sky-600/20 blur-[100px] absolute top-1/2 left-2/3"
+          className="w-80 h-80 rounded-full bg-black-600/20 blur-[100px] absolute top-1/2 left-2/3"
           animate={{ y: [0, 50, 0], x: [0, -20, 0] }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
         <Motion.div
-          className="w-64 h-64 rounded-full bg-sky-400/25 blur-[120px] absolute bottom-1/4 left-1/4"
+          className="w-64 h-64 rounded-full bg-black-400/25 blur-[120px] absolute bottom-1/4 left-1/4"
           animate={{ y: [0, -20, 0], x: [0, 40, 0] }}
           transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -104,43 +106,64 @@ const About = () => {
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
 
-      {/* --- Heading --- */}
-      <Motion.h2
-        className="text-5xl md:text-6xl font-extrabold mb-16 text-center text-sky-400 drop-shadow-lg"
-        initial={{ opacity: 0, textShadow: "0px 0px 0px #38bdf8" }}
-        whileInView={{
-          opacity: 1,
-        }}
-        transition={{ duration: 1.2, ease: "easeInOut" }}
-        style={{ fontFamily: '"Goldman", sans-serif' }}
-      >
-        About <span className="text-black">Me</span>
-      </Motion.h2>
-
       {/* --- About Description --- */}
-      <div className="relative flex justify-center items-center mb-12 max-w-3xl text-center">
-        <Motion.p
-          className="text-black text-lg md:text-xl leading-relaxed font-medium tracking-wide"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.9, delay: 0.2 }}
-          style={{ fontFamily: "'Goldman', sans-serif", lineHeight: "1.8" }}
+      <div
+        id="about"
+        className="scroll-mt-24 flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto px-6 py-4 md:py-6"
+      >
+        {/* Left Section */}
+        <Motion.div
+          className="md:w-1/2 text-left"
+          initial={{ opacity: 0, x: -40 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 1 }}
         >
-          I am a passionate{" "}
-          <span className="font-semibold text-sky-500">
-            Computer Engineering student
-          </span>{" "}
-          with a strong focus on{" "}
-          <span className="font-semibold text-sky-500">
-            Full-Stack Development
-          </span>
-          , <span className="font-semibold text-sky-500">AI & ML</span>, and
-          modern{" "}
-          <span className="font-semibold text-sky-500">Web Technologies</span>.
-          I love tackling complex problems and turning ideas into clean,
-          efficient, and visually engaging digital solutions that make an
-          impact.
-        </Motion.p>
+          <h2
+            className="text-3xl md:text-4xl font-bold mb-4 text-sky-600"
+            style={{ fontFamily: "'Goldman', sans-serif" }}
+          >
+            About Me
+          </h2>
+
+          <p
+            className="text-black text-base md:text-lg leading-relaxed font-medium tracking-wide"
+            style={{ fontFamily: "'Goldman', sans-serif", lineHeight: "1.8" }}
+          >
+            I’m a passionate{" "}
+            <span className="font-semibold text-sky-500">
+              Computer Engineering student
+            </span>{" "}
+            who loves solving real-world problems through technology. My
+            interests span across{" "}
+            <span className="font-semibold text-sky-500">
+              Full-Stack Development
+            </span>
+            ,{" "}
+            <span className="font-semibold text-sky-500">
+              Artificial Intelligence
+            </span>
+            , and{" "}
+            <span className="font-semibold text-sky-500">
+              modern Web Technologies
+            </span>
+            . I aim to craft clean, efficient, and visually appealing digital
+            solutions that truly make a difference.
+          </p>
+        </Motion.div>
+
+        {/* Right Section */}
+        <Motion.div
+          className="md:w-1/2 flex justify-center mt-8 md:mt-0"
+          initial={{ opacity: 0, x: 40 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 1, delay: 0.2 }}
+        >
+          <img
+            src={Photo}
+            alt="Profile"
+            className="w-56 h-56 md:w-72 md:h-72 rounded-full shadow-lg object-cover border-4 border-sky-500"
+          />
+        </Motion.div>
       </div>
 
       {/* --- Professional Drive Cards with faint blue background --- */}
@@ -148,7 +171,7 @@ const About = () => {
         {DRIVE_POINTS.map((point, idx) => (
           <div
             key={idx}
-            className="min-w-[260px] bg-sky-500/10 border border-white/30 backdrop-blur-lg p-6 rounded-2xl shadow-md flex flex-col items-start"
+            className="min-w-[260px]  border border-white/30 backdrop-blur-lg p-6 rounded-2xl shadow-md flex flex-col items-start"
           >
             <point.icon className="w-8 h-8 text-sky-500 mb-3" />
             <h4 className="font-semibold text-black text-lg mb-1">
