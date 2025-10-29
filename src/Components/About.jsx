@@ -119,7 +119,7 @@ const About = () => {
           transition={{ duration: 1 }}
         >
           <h2
-            className="text-3xl md:text-4xl font-bold mb-4 text-sky-600"
+            className="text-3xl md:text-4xl font-bold mb-4 text-black-600 border-2 border-black-500 px-3 py-1 rounded-xl inline-block"
             style={{ fontFamily: "'Goldman', sans-serif" }}
           >
             About Me
@@ -161,7 +161,7 @@ const About = () => {
           <img
             src={Photo}
             alt="Profile"
-            className="w-56 h-56 md:w-72 md:h-72 rounded-full shadow-lg object-cover border-4 border-sky-500"
+            className="w-56 h-56 md:w-72 md:h-72 rounded-full shadow-lg object-cover border-4 border-sky-400 shadow-[0_0_40px_rgba(56,189,248,0.8)] animate-[float_3s_ease-in-out_infinite]"
           />
         </Motion.div>
       </div>

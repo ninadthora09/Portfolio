@@ -43,7 +43,7 @@ const projects = [
     title: "Portfolio Website (Current)",
     description:
       "My personal interactive portfolio built with React and Framer Motion, featuring smooth animations and a clean, responsive design.",
-    tech: ["React", "Tailwind", "Framer Motion"],
+    tech: ["React", "Tailwind", "Framer Motion","Three.js"],
     code: "https://github.com/ninadthora09/Portfolio",
     demo: "https://ninadthorat.vercel.app/",
     icon: Monitor,
@@ -84,7 +84,7 @@ const Projects = () => {
     <section
       id="projects"
       // Increased bottom padding to pb-96 for maximum scrolling clearance
-      className="relative min-h-screen w-full flex flex-col items-center pt-20 pb-30 text-white px-6 bg-gradient-to-br from-black via-gray-950 to-black"
+      className="relative min-h-screen w-full flex flex-col items-center pt-20 pb-10 text-white px-6 bg-gradient-to-br from-black via-gray-950 to-black"
       style={{ fontFamily: "'Goldman', sans-serif" }}
     >
       {/* NEW WRAPPER to constrain content width and align title left */}

@@ -61,7 +61,6 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4 md:py-5">
-
           {/* Logo */}
           <Motion.h1
             initial={{ opacity: 0, y: -10 }}
@@ -86,20 +85,13 @@ const Navbar = () => {
                 initial={{ opacity: 0, y: -5 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.05 * i }}
-                className={`relative px-2 py-1 text-lg font-[Dancing+Script] transition-colors duration-300 ${
-                  active === section.id
-                    ? "text-sky-500 font-bold"
-                    : "text-gray-800 hover:text-sky-500"
-                }`}
+                className={`relative px-4 py-2 text-lg text-gray-800 
+                            border-2 border-gray-200 rounded-xl 
+                            hover:bg-white hover:text-black
+                            transition-all duration-300 shadow-md hover:shadow-lg 
+                           }`}
               >
                 {section.name}
-                <Motion.span
-                  className={`absolute bottom-0 left-0 w-0 h-[2px] bg-sky-500 rounded ${
-                    active === section.id ? "w-full" : ""
-                  }`}
-                  whileHover={{ width: "100%" }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                />
               </Motion.a>
             ))}
           </nav>

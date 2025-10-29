@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion as Motion, AnimatePresence } from "framer-motion";
 
-// Import your images from assets
+// Import your images
 import cert1 from "../assets/Internship.jpg";
 import cert2 from "../assets/GenerativeAI.jpg";
 import cert3 from "../assets/Hackathon.jpg";
@@ -21,31 +21,58 @@ export default function CertificationsPage() {
 
   return (
     <section
-      className="min-h-screen py-20 px-6 md:px-12 lg:px-20 bg-gradient-to-b from-white via-blue-50 to-white bg-#064b74-400"
       id="certifications"
-      style={{ fontFamily: "'Goldman', sans-serif"}}
+      className="min-h-screen flex flex-col items-center justify-center scroll-mt-8 px-6 py-10 bg-gray-50"
+      style={{ fontFamily: "'Goldman', sans-serif" }}
     >
-      <div className="max-w-6xl mx-auto text-center mb-16">
-        {/* Clean, stable heading */}
+      {/* Subtle animated background particles */}
+      <div className="absolute inset-0 -z-10 opacity-20">
+        <Motion.div
+          className="absolute w-96 h-96 bg-sky-300/30 rounded-full blur-3xl top-10 left-20"
+          animate={{ y: [0, 30, 0], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 6, repeat: Infinity }}
+        />
+        <Motion.div
+          className="absolute w-80 h-80 bg-indigo-300/30 rounded-full blur-3xl bottom-10 right-20"
+          animate={{ y: [0, -30, 0], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 7, repeat: Infinity }}
+        />
+      </div>
+
+      {/* Modern Heading */}
+      <div className="max-w-6xl mx-auto text-center mb-5 relative">
         <Motion.h1
-          className="text-6xl font-extrabold mb-4"
-          style={{ color: "#00A6F4" }}
-          initial={{ opacity: 0, y: 30 }}
+          className="text-5xl font-bold text-gray-900 mb-0 bg-gradient-to-r from-sky-400 via-blue-500 to-sky-400 text-transparent bg-clip-text"
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
         >
           Certifications
         </Motion.h1>
 
-        <p className="text-gray-600 text-lg">
-          Explore all my professional certifications in one place.
-        </p>
+        {/* Animated underline */}
+        <Motion.div
+          className="mx-auto h-[4px] w-24 rounded-full bg-gradient-to-r from-sky-400 to-blue-500"
+          initial={{ width: 0, opacity: 0 }}
+          animate={{ width: 96, opacity: 1 }}
+          transition={{ delay: 0.6, duration: 0.6, ease: "easeOut" }}
+        />
+
+        <Motion.p
+          className="text-gray-600 text-center max-w-2xl mx-auto leading-relaxed"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.7 }}
+        >
+          Every certificate here represents a step in my journey of learning and
+          professional growth.
+        </Motion.p>
       </div>
 
       {/* Olympic-style layout */}
       <div className="relative flex justify-center items-center flex-col">
         {/* Top row - 3 cards */}
-        <div className="flex gap-8 justify-center flex-wrap">
+        <div className="flex gap-10 justify-center flex-wrap">
           {certifications.slice(0, 3).map((cert, index) => (
             <Motion.div
               key={index}
@@ -80,7 +107,7 @@ export default function CertificationsPage() {
         </div>
 
         {/* Bottom row - 2 cards */}
-        <div className="flex gap-8 justify-center -mt-20 flex-wrap">
+        <div className="flex gap-10 justify-center -mt-20 flex-wrap">
           {certifications.slice(3, 5).map((cert, index) => (
             <Motion.div
               key={index + 3}
