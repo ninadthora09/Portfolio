@@ -42,7 +42,7 @@ User Experience: Smooth scroll, responsive sections, and focused interactivity.
 🧑‍💻 Author
 
 👋 Hi, I’m Ninad Thorat
-A passionate Computer Engineering student, developer, and problem solver with interests in Full Stack Development, Machine Learning, and Cybersecurity.
+A passionate Computer Engineering student, developer, and problem solver with interests in Full Stack Development and Machine Learning.
 
 I love creating aesthetic, functional web experiences that merge design with technology.
 
