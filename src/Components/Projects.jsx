@@ -1,214 +1,169 @@
-import React from "react";
-import { motion as Motion } from "framer-motion";
-import {
-  Code,
-  Github,
-  Rocket,
-  Sparkles,
-  Zap,
-  Server,
-  Monitor,
-} from "lucide-react"; // Added Zap, Server, Monitor
+import React, { useState } from "react";
+import { motion as Motion} from "framer-motion";
+import { FaGithub } from "react-icons/fa";
+import { Sparkles, ArrowUpRight, Cpu, Globe, Code2, Zap } from "lucide-react";
 
-// Define the project data array
 const projects = [
   {
-    title: "AI Powered Quiz App",
-    description:
-      "An AI-integrated quiz platform that generates dynamic questions and delivers real-time explanations powered by OpenAI.",
-    tech: ["React", "Tailwind", "Framer Motion", "OpenAI API"],
-    code: "https://github.com/ninadthora09/AI_powered_Quiz_app",
-    demo: "https://ai-powered-quiz.vercel.app/",
+    title: "College Website (React)",
+    category: "Tech STACK",
+    description: "Dynamic question generation with real-time AI explanations.",
+    tech: ["React", "Tailwind", "Framer Motion"],
+    code: "https://github.com/ninadthora09/NMIET-College-Website",
+    demo: "https://nmiet-college-website.vercel.app/",
     icon: Sparkles,
+    num: "01",
+    accent: "#C8FF57",
   },
   {
-    title: "Inventory Management",
-    description:
-      "A robust, full-stack inventory system that manages stock, automates reports, and visualizes data analytics efficiently.",
-    tech: ["MongoDB", "Express", "React", "Node.js"],
-    code: "https://github.com/ninadthora09/Inventory-Management-System",
+    title: "AI-Powered Contract Analysis Platform (MERN Stack)",
+    category: "Tech STACK",
+    description: "Robust system managing stock and automating reports.",
+    tech: ["MongoDB", "Express", "Node.js","OpenAi"],
+    code: "https://github.com/ninadthora09/SwiftContract",
     demo: "https://inventory-system-demo.vercel.app/",
-    icon: Server,
+    icon: Cpu,
+    num: "02",
+    accent: "#57C8FF",
   },
   {
-    title: "AI Resume Builder",
-    description:
-      "A next-gen AI-driven resume builder that crafts professional, ATS-optimized resumes in seconds.",
-    tech: ["React", "Tailwind", "OpenAI", "Firebase"],
-    code: "https://github.com/ninadthora09/AI_Resume_Builder",
-    demo: "https://ai-resume-builder.vercel.app/",
-    icon: Code,
+    title: "Crowd-Sourced Road Hazard Intelligence System",
+    category: "Tech STACK",
+    description: "ATS-optimized resume builder that crafts professional profiles.",
+    tech: ["React", "Flask","Machine Learning", "OpenAI"],
+    code: "https://github.com/ninadthora09/NMIET-College-Website",
+    demo: "https://nmiet-college-website.vercel.app/",
+    icon: Code2,
+    num: "03",
+    accent: "#FF8C57",
   },
   {
-    title: "Portfolio Website (Current)",
-    description:
-      "My personal interactive portfolio built with React and Framer Motion, featuring smooth animations and a clean, responsive design.",
-    tech: ["React", "Tailwind", "Framer Motion","Three.js"],
-    code: "https://github.com/ninadthora09/Portfolio",
-    demo: "https://ninadthorat.vercel.app/",
-    icon: Monitor,
+    title: "Weather Website (API)",
+    category: "Tech STACK",
+    description: "Interactive 3D portfolio with custom Three.js components.",
+    tech: ["HTML/CSS", "JavaScript","Weather API" ],
+    code: "https://github.com/ninadthora09/Quiz-App-React",
+    demo: "https://weather-site-sigma-eight.vercel.app/",
+    icon: Globe,
+    num: "04",
+    accent: "#C957FF",
   },
-  {
-    title: "Green Skills & AI Project",
-    description:
-      "An eco-focused AI project that promotes sustainability through data insights, automated reporting, and machine learning models.",
-    tech: ["Python", "Machine Learning", "TensorFlow"],
-    code: "https://github.com/ninadthora09/Green-AI-Project",
-    demo: "https://green-ai-project.vercel.app/",
-    icon: Zap,
-  },
-  {
-    // New 6th Card
-    title: "Interactive 3D Core Viewer",
-    description:
-      "A highly engaging, custom 3D component built with Three.js and React, featuring parallax mouse movement and event-driven pulsing feedback.",
-    tech: ["React", "Three.js", "Tailwind", "WebGL"],
-    code: "#", // Placeholder code link
-    demo: "#", // Placeholder demo link
-    icon: Server, // Reusing icon for simplicity
-  },
+  
 ];
 
-// Framer Motion variant for staggered reveal
-const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  show: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.1, duration: 0.6, ease: "easeOut" },
-  }),
+const ProjectCard = ({ project}) => {
+  const [hovered, setHovered] = useState(false);
+  const Icon = project.icon;
+
+  return (
+    <Motion.div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="relative group border-b border-white/5 last:border-0"
+    >
+      <div className="relative flex items-center gap-8 px-8 py-4 transition-all duration-500 group-hover:bg-white/[0.02]">
+        
+        {/* BIG PROJECT TITLE */}
+        <div className="flex-1 overflow-hidden">
+          <Motion.h3
+            animate={{ 
+              x: hovered ? 10 : 0,
+              color: hovered ? project.accent : "#ffffff" 
+            }}
+            className="proj-display font-bold text-[2rem] md:text-[3.5rem] tracking-tighter leading-none"
+          >
+            {project.title}
+          </Motion.h3>
+          <div className="flex items-center gap-4 mt-2">
+             <span className="proj-mono text-[10px] text-white/20 uppercase tracking-[0.3em] font-bold">
+               {project.category}
+             </span>
+             <div className="h-px w-12 bg-white/10" />
+             <div className="hidden md:flex gap-2">
+                {project.tech.map(t => (
+                  <span key={t} className="proj-mono text-[15px] text-white/40">{t}</span>
+                ))}
+             </div>
+          </div>
+        </div>
+
+        {/* BUTTONS SECTION */}
+        <div className="flex items-center gap-4">
+          <Motion.a
+            href={project.demo}
+            target="_blank"
+            animate={{ 
+                backgroundColor: hovered ? project.accent : "transparent",
+                color: hovered ? "#000" : "#fff",
+                borderColor: hovered ? project.accent : "rgba(255,255,255,0.1)"
+            }}
+            className="hidden sm:flex items-center gap-2 px-6 py-3 rounded-full border text-xs font-bold font-mono transition-all"
+          >
+            PREVIEW <ArrowUpRight size={14} />
+          </Motion.a>
+          
+          <a href={project.code} target="_blank" className="p-4 rounded-full border border-white/10 text-white/40 hover:text-white hover:border-white transition-all">
+            <FaGithub size={20} />
+          </a>
+        </div>
+
+        {/* BACKGROUND ACCENT TEXT (01, 02, etc) */}
+        <span className="absolute right-8 top-1/2 -translate-y-1/2 proj-display font-black text-[8rem] text-white/[0.02] pointer-events-none group-hover:text-white/[0.05] transition-all">
+          {project.num}
+        </span>
+      </div>
+    </Motion.div>
+  );
 };
 
 const Projects = () => {
   return (
-    <section
-      id="projects"
-      // Increased bottom padding to pb-96 for maximum scrolling clearance
-      className="relative min-h-screen w-full flex flex-col items-center pt-20 pb-10 text-white px-6 bg-gradient-to-br from-black via-gray-950 to-black"
-      style={{ fontFamily: "'Goldman', sans-serif" }}
-    >
-      {/* NEW WRAPPER to constrain content width and align title left */}
-      <div className="max-w-7xl w-full">
-        {/* --- Section Title (Left Aligned) --- */}
-        <Motion.h2
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-          viewport={{ once: true }}
-          // Aligned left, reduced mb-16 to mb-12
-          className="text-4xl md:text-6xl font-bold mb-12 flex items-center gap-3 relative z-10 text-left"
-        >
-          <Sparkles className="text-teal-400 w-10 h-10" />
-          <span className="text-white">My</span>{" "}
-          <span className="text-teal-400">Projects</span>
-          <p className="text-gray-300 text-lg text-center max-w-2xl mx-auto mb-1 mt-2">
-            A showcase of my favorite projects — blending creativity with technology to build clean, responsive, and impactful digital experiences 😊🚀.
-          </p>
-        </Motion.h2>
+    <section id="projects" className="projects-root h-screen flex flex-col justify-center relative overflow-hidden bg-[#050505]">
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+        .proj-mono { font-family: 'JetBrains Mono', monospace; }
+        .proj-display { font-family: 'Syne', sans-serif; }
+        
+        .projects-root::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at 50% 50%, transparent 0%, #050505 100%);
+          pointer-events: none;
+        }
+      `}</style>
 
-        {/* --- Projects Grid --- */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8 w-full">
-          {projects.map((proj, i) => {
-            const Icon = proj.icon; // Get the lucide icon component
-            return (
-              <Motion.div
-                key={i}
-                variants={fadeInUp}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.2 }}
-                custom={i}
-                // Reduced card padding from p-6 to p-5
-                className="group relative bg-gray-900/80 backdrop-blur-sm border border-white/5 rounded-xl p-5 shadow-xl 
-                          hover:border-teal-500/50 transition-all duration-300 hover:scale-[1.02] cursor-pointer"
-              >
-                {/* --- Card Border Glow Effect --- */}
-                <div
-                  className="absolute -inset-0.5 bg-gradient-to-r from-teal-500 to-blue-500 rounded-xl opacity-0 
-                              group-hover:opacity-40 transition-opacity duration-500 blur-sm"
-                ></div>
+      {/* Decorative Orbs */}
+      <div className="absolute top-[-10%] right-[-5%] w-[40%] h-[40%] bg-[#C8FF57]/10 rounded-full blur-[120px]" />
+      <div className="absolute bottom-[-10%] left-[-5%] w-[40%] h-[40%] bg-[#57C8FF]/10 rounded-full blur-[120px]" />
 
-                {/* --- Content Container --- */}
-                <div className="relative z-10 flex flex-col h-full">
-                  {/* Title and Icon */}
-                  <div className="flex items-start gap-3 mb-3">
-                    {/* Reduced icon size from 28 to 24 */}
-                    <Icon
-                      className="text-teal-400 mt-1 flex-shrink-0"
-                      size={24}
-                    />
-                    {/* Reduced title font from 2xl to xl */}
-                    <h3 className="text-xl font-bold text-white leading-tight">
-                      {proj.title}
-                    </h3>
-                  </div>
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-6">
+        
+        {/* HEADER SECTION - Tightened */}
+        <header className="mb-8 flex justify-between items-end">
+          <div>
+            <h2 className="proj-display text-5xl md:text-7xl font-extrabold text-white leading-none tracking-tighter">
+              CRAFTED <span className="text-white/20">WORKS.</span>
+            </h2>
+          </div>
+        </header>
 
-                  {/* Description */}
-                  {/* Reduced font size to sm and margin from mb-6 to mb-4 */}
-                  <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">
-                    {proj.description}
-                  </p>
-
-                  {/* Tech Stack */}
-                  <div className="flex flex-wrap gap-2 mb-4 pt-2 border-t border-white/5">
-                    {proj.tech.map((t, j) => (
-                      <span
-                        key={j}
-                        className="px-3 py-1 text-xs font-medium bg-teal-500/10 text-teal-300 border border-teal-500/30 rounded-full hover:bg-teal-500/20 transition-colors"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Links */}
-                  <div className="flex justify-between items-center mt-auto">
-                    <a
-                      href={proj.code}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-gray-300 hover:text-teal-400 transition-colors duration-300 text-sm font-medium"
-                    >
-                      <Github size={18} /> Code
-                    </a>
-                    <a
-                      href={proj.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 bg-teal-600 hover:bg-teal-500 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 shadow-lg shadow-teal-500/20 transform hover:scale-105"
-                    >
-                      <Rocket size={16} /> Live Demo
-                    </a>
-                  </div>
-                </div>
-              </Motion.div>
-            );
-          })}
+        {/* PROJECTS CONTAINER - High Polish */}
+        <div className="border border-white/10 bg-white/[0.01] backdrop-blur-3xl rounded-[2rem] overflow-hidden shadow-2xl">
+          {projects.map((project, index) => (
+            <ProjectCard key={index} project={project} index={index} />
+          ))}
         </div>
-      </div>
 
-      {/* --- Subtle Animated Background Blurs (Enhanced) --- */}
-      <Motion.div
-        className="absolute -z-10 w-[400px] h-[400px] bg-teal-400/15 rounded-full blur-[180px] top-10 left-[-5%]"
-        animate={{ x: [0, 40, 0], opacity: [0.5, 0.7, 0.5] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <Motion.div
-        className="absolute -z-10 w-[550px] h-[550px] bg-blue-500/10 rounded-full blur-[200px] bottom-[-5%] right-0"
-        animate={{ x: [0, -50, 0], opacity: [0.4, 0.8, 0.4] }}
-        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-      />
+        {/* FOOTER - Minimal */}
+        <footer className="mt-8 flex justify-between items-center opacity-30">
+           <span className="proj-mono text-[15px] uppercase tracking-[0.4em] text-white">Interactive Experience</span>
+           <div className="h-px flex-1 mx-8 bg-gradient-to-r from-transparent via-white to-transparent" />
+           <span className="proj-mono text-[15px] uppercase tracking-[0.4em] text-white">© 2026 Ninad Thorat</span>
+        </footer>
+      </div>
     </section>
   );
 };
 
-// Main App Component (Kept for running the immersive)
-const App = () => {
-  return (
-    <div className="min-h-screen bg-white">
-      <Projects />
-    </div>
-  );
-};
-
-export default App;
+export default Projects;

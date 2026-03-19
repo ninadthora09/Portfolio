@@ -1,152 +1,125 @@
 import React, { useState, useEffect } from "react";
 import { motion as Motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Home, User, Briefcase, Award, Zap } from "lucide-react";
 
 const sections = [
-  { id: "hero", name: "Home" },
-  { id: "about", name: "About/Skills" },
-  { id: "projects", name: "Projects" },
-  { id: "certifications", name: "Credentials" },
+  { id: "hero", icon: Home },
+  { id: "about", icon: User },
+  { id: "projects", icon: Briefcase},
+  { id: "achievements", icon: Award },
 ];
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+export default function Navbar() {
   const [active, setActive] = useState("hero");
 
-  const scrollToSection = (id) => {
-    if (id === "hero") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      const element = document.getElementById(id);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
-    setIsOpen(false);
-  };
-
-  // Scroll listener to change navbar background & active link
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
-
-      // Check active section
       let current = "hero";
-      sections.forEach((section) => {
-        const element = document.getElementById(section.id);
-        if (element) {
-          const top = element.getBoundingClientRect().top;
-          if (top <= 100) current = section.id;
-        }
+      sections.forEach(({ id }) => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 300) current = id;
       });
       setActive(current);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <Motion.header
-      style={{ fontFamily: "'Goldman', sans-serif" }}
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        scrolled
-          ? "backdrop-blur-lg bg-white/30 shadow-lg"
-          : "bg-white/20 backdrop-blur-none"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4 md:py-5">
-          {/* Logo */}
-          <Motion.h1
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ type: "spring", stiffness: 200 }}
-            className="text-3xl md:text-4xl font-bold font-[Pacifico] text-gray-900 hover:text-sky-500 transition-colors duration-300"
-            style={{ fontFamily: "'Goldman', sans-serif" }}
-          >
-            NINAD.T
-          </Motion.h1>
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@800&display=swap');
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .syne { font-family: 'Syne', sans-serif; }
+        
+        .cyber-border {
+          background: linear-gradient(180deg, transparent, rgba(200,255,87,0.3), transparent);
+          width: 1px;
+          height: 100%;
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-4 md:space-x-6 items-center">
-            {sections.map((section, i) => (
-              <Motion.a
-                key={section.id}
-                href={`#${section.id}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(section.id);
-                }}
-                initial={{ opacity: 0, y: -5 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.05 * i }}
-                className={`relative px-4 py-2 text-lg text-gray-800 
-                            border-2 border-gray-200 rounded-xl 
-                            hover:bg-white hover:text-black
-                            transition-all duration-300 shadow-md hover:shadow-lg 
-                           }`}
-              >
-                {section.name}
-              </Motion.a>
-            ))}
-          </nav>
+        .active-glow {
+          box-shadow: 0 0 20px rgba(200,255,87,0.15), inset 0 0 10px rgba(200,255,87,0.05);
+        }
+      `}</style>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 rounded-lg hover:bg-sky-100/30 transition"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle Menu"
-          >
-            {isOpen ? (
-              <X className="text-gray-800" size={28} />
-            ) : (
-              <Menu className="text-gray-800" size={28} />
-            )}
-          </button>
+      {/* LEFT NAVIGATION DOCK */}
+      <nav className="fixed left-0 top-0 h-screen w-[80px] z-[100] bg-[#080808] flex flex-col items-center py-8 border-r border-white/5 hidden lg:flex">
+        <div className="cyber-border" />
+
+        {/* Top Logo Component */}
+        <div className="relative group cursor-pointer mb-12">
+          <div className="w-10 h-10 border border-[#C8FF57]/30 flex items-center justify-center rotate-45 group-hover:rotate-90 transition-transform duration-500">
+            <span className="syne text-[#C8FF57] -rotate-45 group-hover:-rotate-90 transition-transform text-sm">NT</span>
+          </div>
+          <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[1px] h-4 bg-white/10" />
         </div>
-      </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <Motion.div
-            key="mobile-menu"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4 }}
-            className="md:hidden absolute w-full bg-white/90 backdrop-blur-lg shadow-lg"
-          >
-            {sections.map((section, i) => (
-              <Motion.a
-                key={section.id}
-                href={`#${section.id}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(section.id);
-                }}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.05 * i }}
-                className={`block px-6 py-3 text-lg font-[Dancing+Script] rounded transition-all duration-300 ${
-                  active === section.id
-                    ? "text-sky-500 font-bold"
-                    : "text-gray-800 hover:text-sky-500 hover:bg-sky-100/70"
-                }`}
-              >
-                {section.name}
-              </Motion.a>
+        {/* Nav Items Container */}
+        <div className="flex-1 flex flex-col justify-center gap-6">
+          {sections.map((item) => {
+            const isActive = active === item.id;
+            return (
+              <div key={item.id} className="relative flex items-center group">
+                {/* Vertical Label (Hidden by default, reveals on hover) */}
+                <span className={`
+                  absolute left-20 mono text-[9px] tracking-[0.3em] uppercase whitespace-nowrap transition-all duration-300
+                  ${isActive ? "text-[#C8FF57] opacity-100 translate-x-0" : "text-white/20 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-2"}
+                `}>
+                  {item.name} <span className="opacity-30 ml-2">{item.code}</span>
+                </span>
+
+                {/* Main Button */}
+                <button
+                  onClick={() => scrollTo(item.id)}
+                  className={`
+                    w-12 h-12 flex items-center justify-center rounded-sm transition-all duration-500 relative
+                    ${isActive ? "bg-[#C8FF57]/5 border border-[#C8FF57]/20 text-[#C8FF57] active-glow" : "text-white/20 hover:text-white/60"}
+                  `}
+                >
+                  <item.icon size={18} strokeWidth={1.5} />
+                  
+                  {/* Active Indicator Dot */}
+                  {isActive && (
+                    <Motion.div 
+                      layoutId="active-dot"
+                      className="absolute -right-[41px] w-1.5 h-1.5 bg-[#C8FF57] rotate-45 shadow-[0_0_10px_#C8FF57]"
+                    />
+                  )}
+                </button>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Bottom Status / Branding */}
+        <div className="mt-auto flex flex-col items-center gap-8">
+            <div className="flex flex-col items-center gap-2">
+                <div className="w-[1px] h-12 bg-gradient-to-t from-[#C8FF57] to-transparent" />
+                <Zap size={14} className="text-[#C8FF57] animate-pulse" />
+            </div>
+        </div>
+      </nav>
+
+      {/* MOBILE HEADER (Minimalist) */}
+      <nav className="lg:hidden fixed top-0 left-0 w-full h-16 px-6 flex items-center justify-between z-[100] bg-[#080808]/80 backdrop-blur-xl border-b border-white/5">
+        <span className="syne font-black text-[#C8FF57] tracking-tighter">NT_</span>
+        <div className="flex gap-2">
+            {sections.map(s => (
+                <div 
+                    key={s.id} 
+                    className={`w-1.5 h-1.5 rotate-45 transition-colors ${active === s.id ? "bg-[#C8FF57]" : "bg-white/10"}`} 
+                />
             ))}
-          </Motion.div>
-        )}
-      </AnimatePresence>
-    </Motion.header>
+        </div>
+      </nav>
+    </>
   );
-};
-
-export default Navbar;
+}

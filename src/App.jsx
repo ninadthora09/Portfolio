@@ -4,7 +4,7 @@ import Hero from "./Components/Hero.jsx";
 import About from "./Components/About.jsx";
 import Projects from "./Components/Projects.jsx";
 import Certifications from "./Components/A&C.jsx";
-import Footer from "./Components/Footer.jsx";
+
 import './index.css';
 
 
@@ -16,7 +16,6 @@ function App() {
       <About/>
       <Projects/>
       <Certifications/>
-      <Footer/>
     </div>
   );
 }

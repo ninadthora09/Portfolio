@@ -192,8 +192,8 @@ const Hero = () => {
       {/* Right buttons */}
       <div className="absolute bottom-20 right-4 md:right-10 flex flex-col space-y-3 md:space-y-4 z-20">
         <a
-          href="/Updated_resume.pdf"
-          download="Updated_resume.pdf"
+          href="/Ninad_Thorat.pdf"
+          download="Ninad_Thorat.pdf"
           target="_blank"
           rel="noopener noreferrer"
         >
