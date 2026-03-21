@@ -214,7 +214,7 @@ const EduPanel = () =>
 const CodingPanel = () => wrap("coding",
   <div className="grid grid-cols-2 gap-10">
     {PLATFORMS.map((p,i)=>(
-      <Motion.a key={i} href={p.href} target="_blank" rel="noopener noreferrer"
+      <Motion.a key={i} href={p.href} target="_blank" rel="noopsener noreferrer"
         className="group flex items-center gap-8 px-4 py-4 rounded-xl border border-[#1a1a1a] bg-[#0d0d0d] no-underline transition-colors hover:border-[#C8FF57]/30">
         <div className="flex items-center justify-center w-10 h-10 rounded-xl shrink-0"
           style={{background:p.accent+"18",border:`1px solid ${p.accent}28`}}>

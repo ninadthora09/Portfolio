@@ -18,7 +18,7 @@ const RotatingText = ({ phrases }) => {
   }, [phrases.length]);
 
   return (
-    <span className="text-sky-500 font-bold">
+    <span className="text-[#C8FF57] font-bold">
       <Motion.span
         key={phrases[index]}
         initial={{ opacity: 0, y: 10 }}
@@ -111,7 +111,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative w-full h-screen overflow-hidden flex items-center bg-gray-50"
+      className="relative w-full h-screen overflow-hidden flex items-center bg-[#0d0d0d]"
     >
       <canvas
         ref={canvasRef}
@@ -120,7 +120,7 @@ const Hero = () => {
 
       {/* Left - Robot Image */}
       <div className="hidden md:flex flex-1 justify-center items-center z-10 relative pl-10">
-        <div className="absolute w-64 h-64 bg-sky-400/30 rounded-full blur-3xl -z-10 left-1/2 transform -translate-x-1/2"></div>
+        <div className="absolute w-64 h-64 bg-[#C8FF57]/30 rounded-full blur-3xl -z-10 left-1/2 transform -translate-x-1/2"></div>
         <img
           src={RobotImage}
           alt="Robot"
@@ -134,7 +134,7 @@ const Hero = () => {
         style={{ fontFamily: "'Goldman', sans-serif" }}
       >
         <Motion.p
-          className="text-2xl sm:text-3xl font-semibold text-gray-900"
+          className="text-2xl sm:text-3xl font-semibold text-white"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -143,7 +143,7 @@ const Hero = () => {
         </Motion.p>
 
         <Motion.h1
-          className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-gray-900 mt-4 leading-tight max-w-4xl"
+          className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white mt-4 leading-tight max-w-4xl"
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
@@ -159,7 +159,7 @@ const Hero = () => {
         </Motion.h1>
 
         <Motion.p
-          className="text-lg sm:text-xl text-gray-700 mt-4 max-w-2xl"
+          className="text-lg sm:text-xl text-white mt-4 max-w-2xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -177,12 +177,12 @@ const Hero = () => {
         whileTap={{ scale: 0.95 }}
       >
         <Motion.div
-          className="w-4 h-4 rounded-full bg-sky-500 mb-2"
+          className="w-4 h-4 rounded-full bg-[#C8FF57] mb-2"
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
         />
         <span
-          className="text-gray-800 font-bold text-lg"
+          className="text-white font-bold text-lg"
           style={{ fontFamily: "'Goldman', sans-serif" }}
         >
           Scroll Down
@@ -198,7 +198,7 @@ const Hero = () => {
           rel="noopener noreferrer"
         >
         <Motion.button
-          className="bg-gray-900 text-white px-3 py-2 md:px-5 md:py-2 rounded-full font-medium text-sm md:text-base hover:bg-sky-600 transition duration-300 cursor-pointer"
+          className="bg-gray-900 text-white px-3 py-2 md:px-5 md:py-2 rounded-full font-medium text-sm md:text-base hover:bg-[#C8FF57] transition duration-300 cursor-pointer"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           style={{ fontFamily: "'Goldman', sans-serif" }}
